@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>West Coast Swing Event Map</title>
+<link href="mapcreatorcsswithsearchbartest.css" />
+<script>
+// Initialize and add the map
+
+// The location of Events
+  var Home = {lat: 33.472463, lng: -81.724151};
+  // Event List order is st month, st day, st year, end month, end day, end year, lat, long
+  var EventList = [
+[	"	U.K. & European WCS Championships	"	,	4	,	11	,	2019	,	4	,	15,	2019	,	51.481529,-0.441432	]	,
+[	"	City of Angels Swing	"	,	4	,	12	,	2018	,	4	,	15,	2018	,	33.945638,-118.380731	]	,
+[	"	Westy Nantes	"	,	4	,	13	,	2018	,	4	,	16,	2018	,	47.21725,-1.55336	]	,
+[	"	Asia West Coast Swing Open	"	,	4	,	18	,	2019	,	4	,	21,	2019	,	1.3885751,103.975655	]	,
+[	"	Asia West Coast Swing Open	"	,	4	,	19	,	2018	,	4	,	22,	2018	,	1.3885751,103.975655	]	,
+[	"	Detonation Dance	"	,	4	,	20	,	2018	,	4	,	22,	2018	,	53.366439,-2.270584	]	,
+[	"	Swing Dance America	"	,	4	,	25	,	2019	,	4	,	29,	2019	,	42.603451,-88.412796	]	,
+[	"	Detonation Dance	"	,	4	,	26	,	2019	,	4	,	29,	2019	,	53.366439,-2.270584	]	,
+[	"	Nordic WCS Championships	"	,	4	,	26	,	2018	,	4	,	30,	2018	,	59.3102219,18.1053591	]	,
+[	"	Swing Dance America	"	,	4	,	26	,	2018	,	4	,	30,	2018	,	42.603451,-88.412796	]	,
+[	"	SOswing Convention	"	,	4	,	27	,	2018	,	4	,	29,	2018	,	42.186148,-122.66135	]	,
+[	"	Westy Nantes	"	,	4	,	5	,	2019	,	4	,	7,	2019	,	47.21725,-1.55336	]	,
+[	"	U.K. & European WCS Championships	"	,	4	,	5	,	2018	,	4	,	9,	2018	,	51.481529,-0.441432	]	,
+[	"	Palm Springs Summer Dance Camp Classic	"	,	8	,	16	,	2018	,	8	,	19,	2018	,	33.844126,-116.545515	]	,
+[	"	Chicagoland Country & Swing Dance Festival	"	,	8	,	17	,	2018	,	8	,	19,	2018	,	41.976012,-87.862888	]	,
+[	"	New England Dance Festival	"	,	8	,	2	,	2018	,	8	,	5,	2018	,	42.34648,-71.2565421	]	,
+[	"	Swingtacular: The Galactic Open	"	,	8	,	2	,	2018	,	8	,	5,	2018	,	37.594525,-122.364289	]	,
+[	"	Arizona Dance Classic	"	,	8	,	2	,	2018	,	8	,	5,	2018	,	33.57956,-111.67786	]	,
+[	"	Midwest Westie Fest	"	,	8	,	2	,	2018	,	8	,	5,	2018	,	38.9274857,-94.7027873	]	,
+[	"	Summer Hummer    (NASDE)	"	,	8	,	23	,	2018	,	8	,	26,	2018	,	42.2978981,-71.4791369	]	,
+[	"	Shakedown Swing	"	,	8	,	24	,	2018	,	8	,	26,	2018	,	-43.5353285,172.6547372	]	,
+[	"	Tampa Bay Classic (NASDE)	"	,	8	,	3	,	2018	,	8	,	5,	2018	,	27.9816058,-82.5346459	]	,
+[	"	Desert City Swing	"	,	8	,	30	,	2018	,	9	,	2,	2018	,	33.375654,-111.970643	]	,
+[	"	South Bay Dance Fling	"	,	8	,	30	,	2018	,	9	,	3,	2018	,	37.3615339,-121.9086097	]	,
+[	"	River City Swing	"	,	8	,	30	,	2018	,	9	,	3,	2018	,	30.2175353,-81.4018347	]	,
+[	"	Dallas D.A.N.C.E.	"	,	8	,	31	,	2018	,	9	,	3,	2018	,	32.930090, -96.796244	]	,
+[	"	German Open WCS Championships	"	,	8	,	9	,	2018	,	8	,	12,	2018	,	47.9911282,7.8546396	]	,
+[	"	LoneStar Invitational	"	,	8	,	9	,	2018	,	8	,	12,	2018	,	30.2146411,-97.7508418	]	,
+[	"	Swing Fling	"	,	8	,	9	,	2018	,	8	,	12,	2018	,	38.9608176,-77.4232115	]	,
+[	"	Riga Summer Swing	"	,	8	,	9	,	2018	,	8	,	13,	2018	,	56.911183, 24.080132	]	,
+[	"	Swingtimate	"	,	12	,	13	,	2019	,	12	,	15,	2019	,	-27.961007, 153.380728	]	,
+[	"	New Year's Swing Fling	"	,	12	,	27	,	2018	,	1	,	1,	2019	,	51.481529,-0.441432	]	,
+[	"	FloorPlay New Years Swing Vacation	"	,	12	,	28	,	2018	,	1	,	1,	2019	,	28.430807, -81.472506	]	,
+[	"	Palm Springs New Year	"	,	12	,	28	,	2018	,	1	,	1,	2019	,	33.823473, -116.537535	]	,
+[	"	Upstate Dance Challenge	"	,	12	,	6	,	2018	,	12	,	9,	2018	,	43.057108, -73.798059	]	,
+[	"	Berlin Swing Revolution	"	,	12	,	6	,	2018	,	12	,	9,	2018	,	52.511572, 13.414658	]	,
+[	"	Swingtimate	"	,	12	,	7	,	2018	,	12	,	9,	2018	,	-27.962296, 153.380530	]	,
+[	"	Paris Westie Fest	"	,	2	,	1	,	2019	,	2	,	3,	2019	,	49.009757, 2.557788	]	,
+[	"	Swing & Snow	"	,	2	,	1	,	2018	,	2	,	4,	2018	,	59.879332, 29.910844	]	,
+[	"	Charlotte Westie Fest	"	,	2	,	1	,	2018	,	2	,	5,	2018	,	35.308234, -80.750444	]	,
+[	"	Capital Swing Dance Presidents Day (NASDE)	"	,	2	,	15	,	2018	,	2	,	18,	2018	,	38.600436, -121.432395	]	,
+[	"	Sweetheart Swing Classic	"	,	2	,	16	,	2018	,	2	,	18,	2018	,	27.981319, -82.534082	]	,
+[	"	Winter Coast Swing	"	,	2	,	21	,	2019	,	2	,	25,	2019	,	62.974155, 27.698657	]	,
+[	"	Rose City Swing	"	,	2	,	22	,	2018	,	2	,	25,	2018	,	45.564707, -122.575431	]	,
+[	"	Mid Atlantic Dance Jam (MADjam)      (NASDE)	"	,	2	,	28	,	2019	,	3	,	3,	2019	,	39.283246, -76.602893	]	,
+[	"	Swingtzerland	"	,	2	,	7	,	2019	,	2	,	10,	2019	,	47.390538, 8.510306	]	,
+[	"	Swingtzerland	"	,	2	,	8	,	2018	,	2	,	11,	2018	,	47.390538, 8.510306	]	,
+[	"	Dance Camp Chicago	"	,	2	,	9	,	2018	,	2	,	11,	2018	,	41.852104, -87.947232	]	,
+[	"	Monterey Swingfest	"	,	1	,	10	,	2019	,	1	,	13,	2019	,	36.592186, -121.876369	]	,
+[	"	Swing Resolution	"	,	1	,	18	,	2019	,	1	,	21,	2019	,	56.059317, -2.738557	]	,
+[	"	SwingCouver	"	,	1	,	24	,	2019	,	1	,	27,	2019	,	49.170502, -123.142163	]	,
+[	"	Municorn Swing	"	,	1	,	25	,	2019	,	1	,	27,	2019	,	48.138259, 11.563213	]	,
+[	"	Charlotte Westie Fest	"	,	1	,	31	,	2019	,	2	,	3,	2019	,	35.308287, -80.750455	]	,
+[	"	Swing & Snow	"	,	1	,	31	,	2019	,	2	,	3,	2019	,	59.879321, 29.910995	]	,
+[	"	Saint Petersburg WCS Nights	"	,	7	,	12	,	2018	,	7	,	15,	2018	,	59.897713, 30.414350	]	,
+[	"	Toronto Open Swing & Hustle Championships	"	,	7	,	12	,	2018	,	7	,	15,	2018	,	43.686425, -79.587078	]	,
+[	"	Big Apple Dance Festival	"	,	7	,	12	,	2018	,	7	,	15,	2018	,	40.712656, -74.163865	]	,
+[	"	Portland Dance Festival	"	,	7	,	12	,	2018	,	7	,	15,	2018	,	45.582989, -122.574712	]	,
+[	"	Swing It Like It's Hot	"	,	7	,	19	,	2018	,	7	,	22,	2018	,	32.055052, 34.767231	]	,
+[	"	Rock The Barn	"	,	7	,	19	,	2018	,	7	,	22,	2018	,	63.772098, 19.622813	]	,
+[	"	Florida Dance Magic	"	,	7	,	19	,	2018	,	7	,	23,	2018	,	26.935678, -80.083193	]	,
+[	"	SwingTime	"	,	7	,	26	,	2018	,	7	,	29,	2018	,	39.737274, -104.835065	]	,
+[	"	Odyssey West Coast Swing	"	,	7	,	27	,	2018	,	7	,	29,	2018	,	-28.035084, 153.402283	]	,
+[	"	GPSDC Annual July 4th Convention	"	,	7	,	4	,	2018	,	7	,	8,	2018	,	33.533538, -111.964718	]	,
+[	"	Indy Dance Explosion	"	,	7	,	5	,	2018	,	7	,	8,	2018	,	39.728450, -86.270193	]	,
+[	"	Wild Wild Westie	"	,	7	,	5	,	2018	,	7	,	8,	2018	,	32.897206, -97.038747	]	,
+[	"	D-Townswing	"	,	6	,	14	,	2018	,	6	,	17,	2018	,	51.205257, 6.855680	]	,
+[	"	Dance N Play	"	,	6	,	14	,	2018	,	6	,	17,	2018	,	44.259699, -121.262878	]	,
+[	"	Finnfest	"	,	6	,	14	,	2018	,	6	,	18,	2018	,	61.496592, 23.766974	]	,
+[	"	CMJ NSW West Coast Swing Dance Championships	"	,	6	,	15	,	2018	,	6	,	17,	2018	,	-33.919590, 151.033837	]	,
+[	"	Swingapalooza	"	,	6	,	15	,	2018	,	6	,	17,	2018	,	30.422991, -91.134310	]	,
+[	"	Korea Westival	"	,	6	,	21	,	2018	,	6	,	24,	2018	,	37.557060, 126.918884	]	,
+[	"	New Zealand Open Swing Dance Championships	"	,	6	,	22	,	2018	,	6	,	24,	2018	,	-36.925374, 174.785382	]	,
+[	"	Liberty Swing Dance Championships  (NASDE)	"	,	6	,	28	,	2018	,	7	,	1,	2018	,	40.496329, -74.440966	]	,
+[	"	Americano Dance Camp	"	,	6	,	28	,	2018	,	7	,	2,	2018	,	53.491358, 49.429797	]	,
+[	"	Neverland Swing	"	,	6	,	29	,	2018	,	7	,	1,	2018	,	52.120658, 5.038166	]	,
+[	"	Jack & Jill O'Rama	"	,	6	,	7	,	2018	,	6	,	11,	2018	,	33.789269, -117.916216	]	,
+[	"	Baltic Swing	"	,	6	,	8	,	2018	,	6	,	11,	2018	,	54.517711, 18.544314	]	,
+[	"	Russian Open WCS Championship	"	,	3	,	1	,	2018	,	3	,	4,	2018	,	55.370617, 37.744333	]	,
+[	"	Mid Atlantic Dance Jam (MADjam)      (NASDE)	"	,	3	,	1	,	2018	,	3	,	4,	2018	,	39.283338, -76.602840	]	,
+[	"	West In Lyon	"	,	3	,	14	,	2019	,	3	,	17,	2019	,	45.818899, 4.774176	]	,
+[	"	Dutch Open West Coast Swing	"	,	3	,	15	,	2018	,	3	,	18,	2018	,	51.547629, 5.996657	]	,
+[	"	Swing Escape	"	,	3	,	16	,	2018	,	3	,	18,	2018	,	-32.928504, 151.425957	]	,
+[	"	King Swing	"	,	3	,	22	,	2018	,	3	,	26,	2018	,	50.047670, 19.952795	]	,
+[	"	The Boston Tea Party	"	,	3	,	22	,	2018	,	3	,	26,	2018	,	42.346118, -71.258284	]	,
+[	"	5280 Westival	"	,	3	,	22	,	2018	,	3	,	26,	2018	,	39.737282, -104.835430	]	,
+[	"	Swing Over Orlando	"	,	3	,	23	,	2018	,	3	,	25,	2018	,	28.461508, -81.311435	]	,
+[	"	Novice Invitational	"	,	3	,	23	,	2018	,	3	,	25,	2018	,	29.785947, -95.618863	]	,
+[	"	Swing Over Orlando	"	,	3	,	28	,	2019	,	3	,	31,	2019	,	28.456156, -81.305791	]	,
+[	"	Easter Swing      (NASDE)	"	,	3	,	29	,	2018	,	4	,	1,	2018	,	47.618482, -122.201353	]	,
+[	"	San Diego Dance Festival	"	,	3	,	29	,	2018	,	4	,	1,	2018	,	32.760505, -117.183790	]	,
+[	"	Anchor Festival	"	,	3	,	29	,	2018	,	4	,	2,	2018	,	53.564064, 9.987188	]	,
+[	"	West In Lyon	"	,	3	,	8	,	2018	,	3	,	11,	2018	,	45.818899, 4.774176	]	,
+[	"	The Chicago Classic   (NASDE)	"	,	3	,	8	,	2018	,	3	,	11,	2018	,	41.842742, -88.002972	]	,
+[	"	High Desert Dance Classic	"	,	3	,	9	,	2018	,	3	,	11,	2018	,	34.675447, -118.186001	]	,
+[	"	SwingDiego (The Superbowl of Swing)	"	,	5	,	10	,	2018	,	5	,	13,	2018	,	32.763183, -117.167800	]	,
+[	"	SwingDiego (The Superbowl of Swing)	"	,	5	,	10	,	2019	,	5	,	13,	2019	,	32.763183, -117.167800	]	,
+[	"	Scottish Swing Classic	"	,	5	,	10	,	2018	,	5	,	14,	2018	,	55.850039, -4.303852	]	,
+[	"	Swingsation	"	,	5	,	16	,	2019	,	5	,	19,	2019	,	-27.997849, 153.428957	]	,
+[	"	The Texas Classic	"	,	5	,	17	,	2018	,	5	,	20,	2018	,	29.743818, -95.458487	]	,
+[	"	Canadian Swing Championships (CSC)	"	,	5	,	17	,	2019	,	5	,	20,	2019	,	46.799954, -71.233570	]	,
+[	"	French Open West Coast Swing	"	,	5	,	18	,	2018	,	5	,	21,	2018	,	48.991000, 2.515172	]	,
+[	"	Canadian Swing Championships (CSC)	"	,	5	,	18	,	2018	,	5	,	21,	2018	,	46.340255, -72.542236	]	,
+[	"	Hungarian Open	"	,	5	,	24	,	2018	,	5	,	27,	2018	,	46.899785, 18.010173	]	,
+[	"	Swingsation	"	,	5	,	24	,	2018	,	5	,	27,	2018	,	-27.997849, 153.428957	]	,
+[	"	USA Grand National Dance Championship    (NASDE)	"	,	5	,	24	,	2018	,	5	,	28,	2018	,	33.884319, -84.465084	]	,
+[	"	FreZno Dance Classic	"	,	5	,	24	,	2018	,	5	,	28,	2018	,	36.732796, -119.784106	]	,
+[	"	Show-Me Showdown	"	,	5	,	25	,	2018	,	5	,	27,	2018	,	38.694082, -90.449321	]	,
+[	"	Swingin' Into Spring	"	,	5	,	3	,	2018	,	5	,	6,	2018	,	41.769261, -72.676074	]	,
+[	"	Michigan Classic	"	,	5	,	31	,	2018	,	6	,	3,	2018	,	42.605316, -83.251629	]	,
+[	"	Orange Blossom Dance Festival	"	,	5	,	31	,	2018	,	6	,	3,	2018	,	28.445668, -81.395631	]	,
+[	"	KIWI Fest	"	,	5	,	4	,	2018	,	5	,	6,	2018	,	50.542104, 30.349940	]	,
+[	"	Scandinavian Open WCS	"	,	11	,	1	,	2018	,	11	,	4,	2018	,	59.292827, 18.084458	]	,
+[	"	Moscow Westie Fest	"	,	11	,	1	,	2018	,	11	,	4,	2018	,	55.779565, 37.588895	]	,
+[	"	Mountain Magic Dance Convention	"	,	11	,	1	,	2018	,	11	,	4,	2018	,	38.961076, -119.939128	]	,
+[	"	Warsaw Halloween Swing	"	,	11	,	1	,	2018	,	11	,	5,	2018	,	52.235373, 20.996748	]	,
+[	"	DC Swing Experience (DCSX)	"	,	11	,	15	,	2018	,	11	,	18,	2018	,	38.960417, -77.423600	]	,
+[	"	London SWINGvitational	"	,	11	,	15	,	2018	,	11	,	18,	2018	,	51.507024, -0.111916	]	,
+[	"	US Open Swing Dance Championships     (NASDE)	"	,	11	,	22	,	2018	,	11	,	25,	2018	,	34.193950, -118.347297	]	,
+[	"	The After Party (TAP)	"	,	11	,	29	,	2018	,	12	,	2,	2018	,	33.674711, -117.860942	]	,
+[	"	Winter White WCS	"	,	11	,	30	,	2018	,	12	,	2,	2018	,	59.834455, 10.441129	]	,
+[	"	Swingin' New England	"	,	11	,	8	,	2018	,	11	,	11,	2018	,	42.346245, -71.258327	]	,
+[	"	Sea To Sky - Seattle	"	,	11	,	8	,	2018	,	11	,	12,	2018	,	47.435439, -122.294129	]	,
+[	"	Midnight Madness	"	,	11	,	9	,	2018	,	11	,	11,	2018	,	32.913144, -97.006681	]	,
+[	"	Autumn Swing Challenge	"	,	11	,	9	,	2018	,	11	,	11,	2018	,	47.493743, 19.076892	]	,
+[	"	Montreal Westie Fest	"	,	10	,	12	,	2018	,	10	,	15,	2018	,	45.456001, -73.751789	]	,
+[	"	WCS Festival	"	,	10	,	18	,	2018	,	10	,	21,	2018	,	51.205225, 6.855953	]	,
+[	"	Paradise Country & Swing Dance Festival	"	,	10	,	18	,	2018	,	10	,	21,	2018	,	33.674658, -117.860920	]	,
+[	"	Swustlicious	"	,	10	,	19	,	2018	,	10	,	21,	2018	,	40.092721, -75.393251	]	,
+[	"	European Swing Challenge	"	,	10	,	19	,	2018	,	10	,	22,	2018	,	51.450943, -0.573571	]	,
+[	"	Swing City Chicago	"	,	10	,	25	,	2018	,	10	,	28,	2018	,	41.842389, -88.003059	]	,
+[	"	Halloween Swingthing	"	,	10	,	25	,	2018	,	10	,	28,	2018	,	33.835898, -118.350814	]	,
+[	"	Boogie By The Bay    (NASDE)	"	,	10	,	4	,	2018	,	10	,	8,	2018	,	37.593736, -122.365223	]	,
+[	"	Norway Westie Fest	"	,	9	,	13	,	2018	,	9	,	16,	2018	,	63.433604, 10.405071	]	,
+[	"	Austin Rocks	"	,	9	,	14	,	2018	,	9	,	16,	2018	,	30.223148, -97.745777	]	,
+[	"	Rocky Mountain Five Dance (RM5)	"	,	9	,	14	,	2018	,	9	,	16,	2018	,	39.890470, -105.065585	]	,
+[	"	Ukrainian Open	"	,	9	,	14	,	2018	,	9	,	16,	2018	,	50.421623, 30.524286	]	,
+[	"	Meet Me in St. Louis Swing Dance Championships	"	,	9	,	20	,	2018	,	9	,	23,	2018	,	38.731889, -90.346256	]	,
+[	"	Best of the Best	"	,	9	,	20	,	2018	,	9	,	23,	2018	,	-28.187973, 153.514640	]	,
+[	"	Citadel Swing	"	,	9	,	21	,	2018	,	9	,	23,	2018	,	45.745663, 21.241843	]	,
+[	"	Philly Swing Classic	"	,	9	,	21	,	2018	,	9	,	23,	2018	,	39.815051, -75.456949	]	,
+[	"	Midland Swing Open	"	,	9	,	27	,	2018	,	9	,	30,	2018	,	51.508508, -0.613525	]	,
+[	"	BridgeTown Swing	"	,	9	,	27	,	2018	,	9	,	30,	2018	,	45.624963, -122.674442	]	,
+[	"	Old Town Swing	"	,	9	,	27	,	2018	,	10	,	1,	2018	,	59.444870, 24.729641	]	,
+[	"	Atlanta Swing Classic	"	,	9	,	27	,	2018	,	10	,	1,	2018	,	33.920961, -84.338044	]	,
+[	"	The Brazilian Open	"	,	9	,	28	,	2018	,	9	,	30,	2018	,	-3.750405, -38.448019	]	,
+[	"	Bavarian Open WCS	"	,	9	,	6	,	2018	,	9	,	9,	2018	,	48.131914, 11.544572	]	,
+[	"	Trilogy Swing	"	,	9	,	6	,	2018	,	9	,	9,	2018	,	35.877768, -78.838390	]	,
+[	"	Fall Fall in Swing	"	,	9	,	7	,	2018	,	9	,	9,	2018	,	37.683176, 127.388975	]	
+  ];
+
+var latitude = 34;
+var longitude = -83;
+
+function initMap() {
+  // The map, centered at Home
+  var map = new google.maps.Map(
+      document.getElementById('map'), {
+		  zoom: 4, 
+		  center: Home, 
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		  });
+   
+google.maps.event.addListener(map, 'click', function(event) {
+	latitude = event.latLng.lat();
+    longitude = event.latLng.lng();
+	latitude = Math.floor(latitude * 1000000) / 1000000;
+	longitude = Math.floor(longitude * 1000000) / 1000000;
+            placeMarker(event.latLng);
+				document.getElementById("UserEventLat").value = latitude;
+				document.getElementById("UserEventLong").value = longitude;
+        });
+          var clickcounter = 0;
+        function placeMarker(location) {
+
+
+
+            if (clickcounter == 0){
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map, 
+					icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                    animation: google.maps.Animation.DROP,
+                });
+				clickcounter++;
+            }
+            else{
+                marker.setPosition(location);
+            }
+            map.setCenter(location);
+
+        }
+
+  // The markers for the events
+  var infowindow = new google.maps.InfoWindow;
+  var marker, i;
+  
+  for (i = 0; i < EventList.length; i++) {  
+  var DuplicateEvent = 0;
+  if (EventList[i][6] == 2018 || EventList[i][6] == 2019){
+	  for (k = 0; k < EventList.length; k++) {
+		  if ((EventList[i][7] == EventList[k][7]) && (EventList[i][8] == EventList[k][8]) && (EventList[i][3] < EventList[k][3])){
+			  DuplicateEvent++;
+		  }
+	  }
+	  if (DuplicateEvent == 0){
+    marker = new google.maps.Marker({
+         position: new google.maps.LatLng(EventList[i][7], EventList[i][8]),
+         map: map
+    });
+	  
+  
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+         return function() {
+			 var contentString = "<b>"+ EventList[i][0] + "</b> <br>" + EventList[i][1] + "-" + EventList[i][2] + "-" + EventList[i][3] + " to"
+			      + "<br>" + EventList[i][4] + "-" + EventList[i][5] + "-" + EventList[i][6]; 
+             infowindow.setContent(contentString);
+             infowindow.open(map, marker);
+         }
+    })(marker, i));
+	  }
+}
+}
+
+var input = document.getElementById('pac-input');
+var searchBox = new google.maps.places.SearchBox(input);
+var markersforsearch =[];
+
+// Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markersforsearch.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markersforsearch = [];
+	
+	var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(30, 30)
+
+      };
+	
+	markersforsearch.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+		
+      }));
+
+  		searchlatitude = place.geometry.location.lat();
+		searchlongitude = place.geometry.location.lng();
+		document.getElementById("UserEventLat").value = searchlatitude;
+		document.getElementById("UserEventLong").value = searchlongitude;
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+
+}
+
+/* function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13,
+    mapTypeId: 'roadmap'
+  });
+
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+} */
+
+/* function updateLocation() {
+	
+				document.getElementById("UserEventLat").value = latitude;
+				document.getElementById("UserEventLong").value = longitude;
+}
+ */
+
+
+function getDate(){  
+var UserEventDate=document.getElementById("UserEventMonth").value;  
+alert(UserEventDate);  
+}  
+
+function getLocation(){
+	var UserEventLat=document.getElementById("UserEventLat").value;
+	var UserEventLong=document.getElementById("UserEventLong").value;
+	alert([UserEventLat,UserEventLong]);
+}
+
+function distancecheck() {
+  var MileageCheck = 0;
+  var ConflictList = [];
+  var OverallConflict = "No";
+  var UserEventLat=document.getElementById("UserEventLat").value;
+  var UserEventLong=document.getElementById("UserEventLong").value;
+  var UserEventStartMonth=document.getElementById("UserEventStartMonth").value;
+  var UserEventStartDay=document.getElementById("UserEventStartDay").value;
+  var UserEventStartYear=document.getElementById("UserEventStartYear").value;
+  var UserEventEndMonth=document.getElementById("UserEventEndMonth").value;
+  var UserEventEndDay=document.getElementById("UserEventEndDay").value;
+  var UserEventEndYear=document.getElementById("UserEventEndYear").value;
+  var UserEventLatFloat= parseFloat(UserEventLat);
+  var UserEventLongFloat= parseFloat(UserEventLong);
+  var UserEventStartMonthFloat= parseFloat(UserEventStartMonth);
+  var UserEventStartDayFloat= parseFloat(UserEventStartDay);
+  var UserEventStartYearFloat= parseFloat(UserEventStartYear);
+  var UserEventEndMonthFloat= parseFloat(UserEventEndMonth);
+  var UserEventEndDayFloat= parseFloat(UserEventEndDay);
+  var UserEventEndYearFloat= parseFloat(UserEventEndYear);
+  var UserEventTimeStart = UserEventStartYearFloat*365+UserEventStartMonthFloat*30+UserEventStartDayFloat;
+  var UserEventTimeEnd = UserEventEndYearFloat*365+UserEventEndMonthFloat*30+UserEventEndDayFloat;
+  
+  if (UserEventTimeStart >= UserEventTimeEnd) {
+	  var myWindow = window.open("", "MsgWindow", "width=400,height=400");
+	  myWindow.document.write("Proposed Event has an end date before the start date." + "<br>" + "Please adjust end date to be after the start date.");
+      return 0;
+  }
+  
+  for (i = 0; i < EventList.length; i++) {
+  var EventDataString = "<b>"+ EventList[i][0] + "</b> <br>" + EventList[i][1] + "-" + EventList[i][2] + "-" + EventList[i][3] + " to"
+			      + "<br>" + EventList[i][4] + "-" + EventList[i][5] + "-" + EventList[i][6];
+  var EventLat = EventList[i][7];
+  var EventLong = EventList[i][8];
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(EventLat-UserEventLatFloat);  // deg2rad below
+  var dLon = deg2rad(EventLong-UserEventLongFloat); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(UserEventLatFloat)) * Math.cos(deg2rad(EventLat)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c * 0.621371; // Distance in mi
+  var EventTimeStart = EventList[i][1]*30 + EventList[i][2] + EventList[i][3]*365;
+  var EventTimeEnd = EventList[i][4]*30 + EventList[i][5] + EventList[i][6]*365;
+  var TimeDifferenceStart = Math.abs(EventTimeStart-UserEventTimeEnd);
+  var TimeDifferenceEnd = Math.abs(EventTimeEnd-UserEventTimeStart);
+  var TimeDifferenceStartPlusYear = Math.abs(EventTimeStart+365-UserEventTimeEnd);
+  var TimeDifferenceEndPlusYear = Math.abs(EventTimeEnd+365-UserEventTimeStart);
+  var DuplicateEventOverall = 0;
+  if (d < 400 && (TimeDifferenceStart <= 30 || TimeDifferenceEnd <= 30 || TimeDifferenceStartPlusYear <= 30 || TimeDifferenceEndPlusYear <= 30))   //Change to 150!!!
+  {
+	   if (EventList[i][6] == 2018 || EventList[i][6] == 2019){
+	  for (k = 0; k < EventList.length; k++) {
+		  if ((((EventList[i][7] == EventList[k][7]) && (EventList[i][8] == EventList[k][8])) || EventList[i][0] == EventList[k][0] ) && (EventList[i][3] < EventList[k][3])){
+			  DuplicateEventOverall++;
+		  }
+	  }
+	  if (DuplicateEventOverall == 0){
+	  MileageCheck++;
+	  ConflictList.push(EventDataString);
+	  }
+	   }
+  }
+ }
+ var myWindow = window.open("", "MsgWindow", "width=400,height=400");
+ myWindow.document.body.innerHTML = "";
+  if (MileageCheck > 0)
+  {
+	  OverallConflict = "Yes";
+	  var myWindow = window.open("", "MsgWindow", "width=400,height=400");
+	  myWindow.document.write("Your Proposed Event Conflicts with:");
+	  myWindow.document.write("<br> </br>");
+  for (j = 0; j < ConflictList.length; j++){ 
+	  for (m = 0; m < ConflictList[j].length; m++){
+myWindow.document.write(ConflictList[j][m]);
+  }
+  myWindow.document.write("<br> </br>");
+  m = 0;
+  }
+  }
+  if (MileageCheck == 0){
+	  var myWindow = window.open("", "MsgWindow", "width=400,height=400");
+	  myWindow.document.write("There are no conflicts with the proposed event");
+  }
+
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+</script>
+</head>
+<body>
+<h3> West Coast Swing Event Check </h3>
+<form>
+Enter Start Date: <br/>
+Month: <input type="text" id="UserEventStartMonth" value="2" name="UserEventStartMonth"/><br/>  
+Day: <input type="text" id="UserEventStartDay" value="16" name="UserEventStartDay"/><br/>
+Year: <input type="text" id="UserEventStartYear" value="2019" name="UserEventStartYear"/><br/>
+<br/>
+Enter End Date: <br/>
+Month: <input type="text" id="UserEventEndMonth" value="2" name="UserEventEndMonth"/><br/>  
+Day: <input type="text" id="UserEventEndDay" value="19" name="UserEventEndDay"/><br/>
+Year: <input type="text" id="UserEventEndYear" value="2019" name="UserEventEndYear"/><br/>
+<br/>
+Select Location:
+</form>
+<!--The div element for the map -->
+<input id="pac-input" size="81" ></input>
+<div id="map" style="width:900px;height:550px;"></div>
+<!-- <div id="map"></div> -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhxd-nB5tRHAq1BYjY351UwpXsS-UL8fQ&libraries=places&callback=initMap">
+</script>
+<form>
+<input type="button" value="Check Availability" onclick="distancecheck()"/>  
+<!form>
+<!-- <form>
+<input type="button" value="Update Location" onclick="updateLocation()"/> 
+</form> -->
+<br/>
+Enter Location: <br/>
+Latitude: <input type="text" id="UserEventLat" value="34.153711" name="UserEventLat"/><br/>  
+Longitude: <input type="text" id="UserEventLong" value="-83.517550" name="UserEventLong"/><br/>
+<br/>
+</body>
+</html>
